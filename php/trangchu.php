@@ -26,6 +26,10 @@ session_start();
                 <a href="#">Sản phẩm</a>
                 <a href="#">Liên hệ</a>
                 <a href="#">Giỏ Hàng</a>
+                <a href="../pages/qldh.html">Quản lí đơn hàng</a>
+                <a href="#">Quản lý khách hàng</a>
+                <a href="#">Quản lí sản phẩm</a>
+                <a href="../pages/thongke.html">Thống kê</a>
 
                 <?php if (!isset($_SESSION['user'])): ?>
                     <!-- CHƯA ĐĂNG NHẬP -->
@@ -64,10 +68,32 @@ session_start();
             <p class="price">2,500,000đ</p>
             <button class="btn">Thêm vào giỏ</button>
         </div>
+        <div class="product">
+            <img src="../image/nike-air-max.png" alt="Nike Air Max">
+            <h3>Nike Air Max</h3>
+            <p class="price">2,500,000đ</p>
+            <button class="btn">Thêm vào giỏ</button>
+        </div>
+        <div class="product">
+            <img src="../image/nike-air-max.png" alt="Nike Air Max">
+            <h3>Nike Air Max</h3>
+            <p class="price">2,500,000đ</p>
+            <button class="btn">Thêm vào giỏ</button>
+        </div>
+        <div class="product">
+            <img src="../image/nike-air-max.png" alt="Nike Air Max">
+            <h3>Nike Air Max</h3>
+            <p class="price">2,500,000đ</p>
+            <button class="btn">Thêm vào giỏ</button>
+        </div>
     </div>
 </div>
 
 <footer>
+    <h3>Liên hệ </h3>
+    <p>Emai: trannhuy543@gmail.com</p>
+    <p>Điện thoại: 0397083605</p>
+    <p>Facebook: https://www.facebook.com/yunhnart1806</p>
     © 2025 SneakerZone – Bán giày chính hãng.
 </footer>
 
