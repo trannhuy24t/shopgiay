@@ -1,13 +1,15 @@
 <?php
 session_start();
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['user_id'])) {
     echo json_encode([
         'login' => true,
-        'name' => $_SESSION['user']['hoten']
-    ]);
+        'hoten' => $_SESSION['hoten'],
+        'role'  => $_SESSION['role']
+    ], JSON_UNESCAPED_UNICODE);
 } else {
-    echo json_encode(['login' => false]);
+    echo json_encode([
+        'login' => false
+    ]);
 }
-?>

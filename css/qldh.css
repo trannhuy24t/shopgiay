@@ -54,6 +54,16 @@ body {
     z-index: 1000;
 }
 
+header {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
 .container {
     width: 90%;
     margin: auto;
@@ -75,43 +85,48 @@ body {
 .nav a:hover {
     color: orange;
 }
-h2 {
-    margin: 40px 0 20px 0;
-    text-align: center;
-}
-
-.products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+.menu-right{
+    display: flex;
+    align-items: center;
     gap: 20px;
 }
+.avatar-icon{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
 
-.product {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    transition: 0.3s;
+}
+.user-area{
+    position: relative;
     cursor: pointer;
 }
-
-.product:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+.user-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 170px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    position: absolute;
+    top: 40px;
+    right: 0;
+    display: block;
+    overflow: hidden;
+    display: none;
 }
 
-.product img {
-    width: 100%;
-    height: 200px;
-    border-radius: 8px;
-    object-fit: cover;
+.user-menu li a {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: black;
 }
-header {
-    width: 100%;
-    background: #000;
-    color: #fff;
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+
+.user-menu li a:hover {
+    background: #f1f1f1;
+}
+.user-menu.show-menu {
+    display: block !important;
 }

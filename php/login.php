@@ -26,12 +26,14 @@ if (mysqli_num_rows($result) === 1) {
 
     if (password_verify($password, $row['password'])) {
 
-        // 🔥 SESSION CHUẨN
+        
         $_SESSION['user'] = [
-            'id'    => $row['id'],
-            'hoten' => $row['hoten'],
-            'email' => $row['email']
-        ];
+    'id'    => $row['id'],
+    'hoten' => $row['hoten'],
+    'email' => $row['email'],
+    'role'  => $row['role']   // 🔥 DÒNG QUAN TRỌNG
+];
+
 
         echo json_encode([
             "status" => "success",

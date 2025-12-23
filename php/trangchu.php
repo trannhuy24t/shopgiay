@@ -21,16 +21,21 @@ session_start();
     <div class="container">
         <div class="nav">
             <a href="./trangchu.php"><h2>SNEAKERZONE</h2></a>
-
             <div class="menu-right">
                 <a href="#">Sản phẩm</a>
                 <a href="#">Liên hệ</a>
-                <a href="#">Giỏ Hàng</a>
-                <a href="../pages/qldh.html">Quản lí đơn hàng</a>
-                <a href="#">Quản lý khách hàng</a>
-                <a href="#">Quản lí sản phẩm</a>
-                <a href="../pages/thongke.html">Thống kê</a>
+                <a href="#">Giỏ hàng</a>
 
+               <!-- MENU ADMIN (CHỈ ADMIN THẤY) -->
+<?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') { ?>
+    <a href="../php/qldh.php">Quản lý đơn hàng</a>
+    <a href="#">Quản lý khách hàng</a>
+    <a href="#">Quản lý sản phẩm</a>
+    <a href="../php/thongke.php">Thống kê</a>
+<?php } ?>
+
+
+                <!-- LOGIN / USER -->
                 <?php if (!isset($_SESSION['user'])): ?>
                     <!-- CHƯA ĐĂNG NHẬP -->
                     <a id="loginbtn" href="../pages/dangnhap.html">Đăng nhập</a>
@@ -89,14 +94,14 @@ session_start();
     </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
-    <h3>Liên hệ </h3>
-    <p>Emai: trannhuy543@gmail.com</p>
+    <h3>Liên hệ</h3>
+    <p>Email: trannhuy543@gmail.com</p>
     <p>Điện thoại: 0397083605</p>
     <p>Facebook: https://www.facebook.com/yunhnart1806</p>
     © 2025 SneakerZone – Bán giày chính hãng.
 </footer>
-
 
 <script src="../js/trangchu.js"></script>
 
