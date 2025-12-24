@@ -44,7 +44,7 @@ session_start();
                     <div id="usericon" class="user-area">
                         <img src="../image/user.jpg" class="avatar-icon" alt="user">
                         <ul id="usermenu" class="user-menu">
-                            <li><a href="#">Thông tin cá nhân</a></li>
+                            <li><a href="../php/profile.php">Thông tin cá nhân</a></li>
                             <li><a href="#">Đơn hàng của tôi</a></li>
                             <li><a href="../php/logout.php">Đăng xuất</a></li>
                         </ul>
