@@ -31,9 +31,9 @@ $user = mysqli_fetch_assoc($result);
         <div class="nav">
             <a href="./trangchu.php"><h2>SNEAKERZONE</h2></a>
             <div class="menu-right">
-                <a href="#">Sản phẩm</a>
+                <a href="../php/sanpham.php">Sản phẩm</a>
                 <a href="#">Liên hệ</a>
-                <a href="#">Giỏ hàng</a>
+                <a href="../php/giohang.php">Giỏ hàng</a>
 
                <!-- MENU ADMIN (CHỈ ADMIN THẤY) -->
 <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') { ?>

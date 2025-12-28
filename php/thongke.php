@@ -35,9 +35,9 @@ $tongtien = 0;
         <div class="nav">
             <a href="./trangchu.php"><h2>SNEAKERZONE</h2></a>
             <div class="menu-right">
-                <a href="#">Sản phẩm</a>
+                <a href="../php/sanpham.php">Sản phẩm</a>
                 <a href="#">Liên hệ</a>
-                <a href="#">Giỏ hàng</a>
+                <a href="../php/giohang.php">Giỏ hàng</a>
 <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') { ?>
     <a href="../php/qldh.php">Quản lý đơn hàng</a>
     <a href="#">Quản lý khách hàng</a>
@@ -94,7 +94,7 @@ $tongtien = 0;
 <tr>
     <td>DH<?= $row['id'] ?></td>
     <td><?= date("d/m/Y", strtotime($row['order_date'])) ?></td>
-    <td><?= htmlspecialchars($row['user_name']) ?></td>
+    <td><?= $row['customer_name'] ?></td>
     <td><?= number_format($row['total_price']) ?>đ</td>
     <td><?= $row['status'] ?></td>
 </tr>

@@ -31,7 +31,7 @@ if (mysqli_num_rows($result) === 1) {
     'id'    => $row['id'],
     'hoten' => $row['hoten'],
     'email' => $row['email'],
-    'role'  => $row['role']   // 🔥 DÒNG QUAN TRỌNG
+    'role'  => $row['role']  
 ];
 
 

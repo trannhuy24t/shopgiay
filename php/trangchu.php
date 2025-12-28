@@ -22,9 +22,9 @@ session_start();
         <div class="nav">
             <a href="./trangchu.php"><h2>SNEAKERZONE</h2></a>
             <div class="menu-right">
-                <a href="#">Sản phẩm</a>
+                <a href="../php/sanpham.php">Sản phẩm</a>
                 <a href="#">Liên hệ</a>
-                <a href="#">Giỏ hàng</a>
+                <a href="../php/giohang.php">Giỏ hàng</a>
 
                <!-- MENU ADMIN (CHỈ ADMIN THẤY) -->
 <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') { ?>
@@ -42,10 +42,10 @@ session_start();
                 <?php else: ?>
                     <!-- ĐÃ ĐĂNG NHẬP -->
                     <div id="usericon" class="user-area">
-                        <img src="../image/user.jpg" class="avatar-icon" alt="user">
+                        <img src="../images/user.jpg" class="avatar-icon" alt="user">
                         <ul id="usermenu" class="user-menu">
                             <li><a href="../php/profile.php">Thông tin cá nhân</a></li>
-                            <li><a href="#">Đơn hàng của tôi</a></li>
+                            <li><a href="../php/donhang.php">Đơn hàng của tôi</a></li>
                             <li><a href="../php/logout.php">Đăng xuất</a></li>
                         </ul>
                     </div>
@@ -68,25 +68,25 @@ session_start();
     <h2>Sản phẩm nổi bật</h2>
     <div class="products">
         <div class="product">
-            <img src="../image/nike-air-max.png" alt="Nike Air Max">
+            <img src="../images/nike-air-max.png" alt="Nike Air Max">
             <h3>Nike Air Max</h3>
             <p class="price">2,500,000đ</p>
             <button class="btn">Thêm vào giỏ</button>
         </div>
         <div class="product">
-            <img src="../image/nike-air-max.png" alt="Nike Air Max">
+            <img src="../images/nike-air-max.png" alt="Nike Air Max">
             <h3>Nike Air Max</h3>
             <p class="price">2,500,000đ</p>
             <button class="btn">Thêm vào giỏ</button>
         </div>
         <div class="product">
-            <img src="../image/nike-air-max.png" alt="Nike Air Max">
+            <img src="../images/nike-air-max.png" alt="Nike Air Max">
             <h3>Nike Air Max</h3>
             <p class="price">2,500,000đ</p>
             <button class="btn">Thêm vào giỏ</button>
         </div>
         <div class="product">
-            <img src="../image/nike-air-max.png" alt="Nike Air Max">
+            <img src="../images/nike-air-max.png" alt="Nike Air Max">
             <h3>Nike Air Max</h3>
             <p class="price">2,500,000đ</p>
             <button class="btn">Thêm vào giỏ</button>

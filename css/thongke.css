@@ -1,7 +1,8 @@
  body {
             font-family: Arial, sans-serif;
             background: #f4f6f8;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
         }
 
         h1 {
@@ -119,43 +120,7 @@ header {
     align-items: center;
     gap: 20px;
 }
-.avatar-icon{
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-
-}
-.user-area{
-    position: relative;
-    cursor: pointer;
-}
-.user-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 170px;
-    background: white;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    position: absolute;
-    top: 40px;
-    right: 0;
-    display: block;
-    overflow: hidden;
-    display: none;
-}
-
-.user-menu li a {
-    display: block;
-    padding: 12px 15px;
-    text-decoration: none;
-    color: black;
-}
-
-.user-menu li a:hover {
-    background: #f1f1f1;
-}
-.user-menu.show-menu {
-    display: block !important;
+h2 {
+    margin: 40px 0 20px 0;
+    text-align: center;
 }

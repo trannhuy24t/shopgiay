@@ -9,7 +9,7 @@
 body {
     background-color: #f5f5f5;
     color: #333;
-    padding: 20px;
+    padding: 0px;
 }
 
 /* Tiêu đề */
@@ -20,6 +20,11 @@ h1 {
     font-size: 28px;
     margin-top: 25px;
 }
+h2 {
+    margin: 40px 0 20px 0;
+    text-align: center;
+}
+
 
 /* Form container */
 form {
@@ -110,8 +115,18 @@ header {
     top: 0;
     z-index: 1000;
 }
+/* HEADER */
+header {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-header .container {
+.container {
     width: 90%;
     margin: auto;
 }
@@ -132,48 +147,10 @@ header .container {
 .nav a:hover {
     color: orange;
 }
+
 .menu-right{
     display: flex;
     align-items: center;
     gap: 20px;
 }
-.avatar-icon{
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
 
-}
-.user-area{
-    position: relative;
-    cursor: pointer;
-}
-.user-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 170px;
-    background: white;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    position: absolute;
-    top: 40px;
-    right: 0;
-    display: block;
-    overflow: hidden;
-    display: none;
-}
-
-.user-menu li a {
-    display: block;
-    padding: 12px 15px;
-    text-decoration: none;
-    color: black;
-}
-
-.user-menu li a:hover {
-    background: #f1f1f1;
-}
-.user-menu.show-menu {
-    display: block !important;
-}

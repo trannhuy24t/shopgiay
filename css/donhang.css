@@ -1,0 +1,176 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f6f8;; /* Espace pour le header fixe */
+    color: #333;
+}
+h2 {
+    margin: 40px 0 20px 0;
+    text-align: center;
+}
+.menu-right{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ====== HEADER ====== */
+header {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav a:hover {
+    color: orange;
+}
+
+/* ====== CONTENU PRINCIPAL ====== */
+.main-content {
+    padding: 30px;
+}
+
+/* ====== TIÊU ĐỀ ====== */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #222;
+    font-size: 28px;
+    margin-top: 25px;
+}
+
+/* ====== KHUNG ĐƠN HÀNG ====== */
+.order-box {
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: box-shadow 0.3s ease;
+}
+
+.order-box:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* ====== HEADER ĐƠN ====== */
+.order-header {
+    font-size: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.order-header b {
+    color: #000;
+}
+
+/* ====== BẢNG SẢN PHẨM ====== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th {
+    background: #f0f0f0;
+    padding: 10px;
+    font-size: 14px;
+    text-align: left;
+    font-weight: 600;
+}
+
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+/* Alignement colonnes */
+table th:nth-child(2),
+table th:nth-child(4),
+table td:nth-child(2),
+table td:nth-child(4) {
+    text-align: right;
+}
+
+table th:nth-child(3),
+table td:nth-child(3) {
+    text-align: center;
+}
+
+/* ====== TỔNG TIỀN ====== */
+.order-total {
+    text-align: right;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #e53935;
+}
+
+/* ====== MESSAGE VIDE ====== */
+.empty-message {
+    text-align: center;
+    font-size: 16px;
+    color: #777;
+    padding: 40px 20px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+    p {
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    table, thead, tbody, th, td, tr {
+        font-size: 13px;
+    }
+
+    .order-header {
+        font-size: 14px;
+    }
+
+    .order-box {
+        padding: 15px;
+    }
+}
