@@ -30,7 +30,7 @@ session_start();
 <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') { ?>
     <a href="../php/qldh.php">Quản lý đơn hàng</a>
     <a href="#">Quản lý khách hàng</a>
-    <a href="#">Quản lý sản phẩm</a>
+    <a href="../php/qlsp.php">Quản lý sản phẩm</a>
     <a href="../php/thongke.php">Thống kê</a>
 <?php } ?>
 

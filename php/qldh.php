@@ -63,13 +63,14 @@ $result = mysqli_query($conn, $sql);
     <td><?= number_format($row['total_price']) ?>đ</td>
 
     <td>
-        <select class="order-status" data-id="<?= $row['id'] ?>">
-            <option <?= $row['status']=='Chờ xử lý'?'selected':'' ?>>Chờ xử lý</option>
-            <option <?= $row['status']=='Đang giao'?'selected':'' ?>>Đang giao</option>
-            <option <?= $row['status']=='Hoàn thành'?'selected':'' ?>>Hoàn thành</option>
-            <option <?= $row['status']=='Hủy'?'selected':'' ?>>Hủy</option>
-        </select>
-    </td>
+    <select class="order-status" data-id="<?= $row['id'] ?>">
+        <option value="Chờ xử lý" <?= $row['status']=='Chờ xử lý'?'selected':'' ?>>Chờ xử lý</option>
+        <option value="Đang giao" <?= $row['status']=='Đang giao'?'selected':'' ?>>Đang giao</option>
+        <option value="Hoàn thành" <?= $row['status']=='Hoàn thành'?'selected':'' ?>>Hoàn thành</option>
+        <option value="Hủy" <?= $row['status']=='Hủy'?'selected':'' ?>>Hủy</option>
+    </select>
+</td>
+
 
     <td>
         <a href="qldh_xem.php?id=<?= $row['id'] ?>" class="btn view">Xem</a>

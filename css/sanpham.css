@@ -117,3 +117,93 @@ h2 {
 .btn:hover {
     background: orange;
 }
+/* ===== GRID SẢN PHẨM ===== */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 25px;
+    padding: 30px;
+}
+
+/* ===== CARD ===== */
+.product {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+    position: relative;
+}
+
+.product:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* ===== ẢNH ===== */
+.product img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+/* ===== TÊN ===== */
+.product h3 {
+    font-size: 16px;
+    margin: 10px 0 6px;
+    color: #333;
+}
+
+/* ===== GIÁ ===== */
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e53935;
+    margin-bottom: 6px;
+}
+
+/* ===== SỐ LƯỢNG ===== */
+.qty {
+    font-size: 14px;
+    color: #2e7d32;
+    margin-bottom: 12px;
+}
+
+/* ===== FORM ===== */
+.product form {
+    margin-top: 10px;
+}
+
+/* ===== NÚT THÊM GIỎ ===== */
+.product button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* NÚT CÒN HÀNG */
+.product button:not(:disabled) {
+    background: linear-gradient(135deg, #43a047, #2e7d32);
+    color: #fff;
+}
+
+.product button:not(:disabled):hover {
+    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    transform: scale(1.03);
+}
+
+/* NÚT HẾT HÀNG */
+.product button:disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+

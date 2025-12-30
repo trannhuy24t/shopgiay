@@ -1,28 +1,21 @@
-
-document.querySelectorAll(".btn-delete").forEach(btn => {
-    btn.addEventListener("click", function () {
+document.querySelectorAll(".order-status").forEach(select => {
+    select.addEventListener("change", function () {
         const orderId = this.dataset.id;
+        const status  = this.value;
 
-        if (!confirm("Bạn có chắc muốn xóa đơn hàng này không?")) return;
-
-        fetch("../php/delete_order.php", {
+        fetch("../php/update_order_status.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: `order_id=${orderId}`
+            body: `order_id=${orderId}&status=${encodeURIComponent(status)}`
         })
         .then(res => res.json())
         .then(data => {
-            if (data.status === "success") {
-                alert("Xóa đơn hàng thành công!");
-                this.closest("tr").remove(); // xóa luôn dòng khỏi bảng
-            } else {
-                alert("Xóa thất bại!");
+            if (data.status !== "success") {
+                alert("❌ Cập nhật thất bại!");
             }
         })
-        .catch(() => alert("Lỗi kết nối server"));
+        .catch(() => alert("⚠ Lỗi kết nối server"));
     });
 });
-
-

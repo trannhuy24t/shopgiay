@@ -12,7 +12,8 @@ $total = 0;
     <link rel="stylesheet" href="../css/giohang.css">
 </head>
 <body>
-    <header class="headerrr">
+
+<header class="headerrr">
     <div class="container">
         <div class="nav">
             <a href="./trangchu.php"><h2>SNEAKERZONE</h2></a>
@@ -21,10 +22,10 @@ $total = 0;
                 <a href="#">Liên hệ</a>
                 <a href="../php/giohang.php">Giỏ hàng</a>
 
-                <?php if ($_SESSION['user']['role'] === 'admin') { ?>
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') { ?>
                     <a href="../php/qldh.php">Quản lý đơn hàng</a>
                     <a href="#">Quản lý khách hàng</a>
-                    <a href="#">Quản lý sản phẩm</a>
+                    <a href="../php/qlsp.php">Quản lý sản phẩm</a>
                     <a href="../php/thongke.php">Thống kê</a>
                 <?php } ?>
             </div>
@@ -33,47 +34,63 @@ $total = 0;
 </header>
 
 <div class="cart-container">
-<h1>🛒 Giỏ hàng</h1>
+    <h1>🛒 Giỏ hàng</h1>
 
-<?php if (empty($cart)) { ?>
-    <p>Giỏ hàng trống</p>
-<?php } else { ?>
-<table class="cart-table">
-<tr>
-    <th>Ảnh</th>
-    <th>Tên</th>
-    <th>Giá</th>
-    <th>Số lượng</th>
-    <th>Thành tiền</th>
-    <th>Xóa</th>
-</tr>
+    <?php if (empty($cart)) { ?>
+        <p>Giỏ hàng trống. <a href="sanpham.php">Tiếp tục mua sắm</a></p>
+    <?php } else { ?>
 
-<?php foreach ($cart as $id => $item) {
-    $sub = $item['price'] * $item['quantity'];
-    $total += $sub;
-?>
-<tr>
-    <td><img src="../images/<?= $item['image'] ?>" width="80"></td>
-    <td><?= $item['name'] ?></td>
-    <td><?= number_format($item['price']) ?>đ</td>
+    <table class="cart-table">
+        <tr>
+            <th>Ảnh</th>
+            <th>Tên</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            <th>Xóa</th>
+        </tr>
 
-    <td>
-        <a href="update_cart.php?id=<?= $id ?>&type=minus">➖</a>
-        <?= $item['quantity'] ?>
-        <a href="update_cart.php?id=<?= $id ?>&type=plus">➕</a>
-    </td>
+        <?php foreach ($cart as $id => $item) {
+            // Kiểm tra an toàn để tránh lỗi "Undefined array key"
+            $name  = $item['name'] ?? 'Sản phẩm không tên';
+            $price = $item['price'] ?? 0;
+            $qty   = $item['quantity'] ?? 0;
+            $img_raw = $item['image'] ?? 'default.jpg'; // Mặc định nếu thiếu ảnh
 
-    <td><?= number_format($sub) ?>đ</td>
-    <td><a href="remove_cart.php?id=<?= $id ?>">❌</a></td>
-</tr>
-<?php } ?>
-</table>
+            $sub   = $price * $qty;
+            $total += $sub;
 
-<h3>Tổng tiền: <span style="color:red"><?= number_format($total) ?>đ</span></h3>
+            // Xử lý đường dẫn ảnh
+            if (filter_var($img_raw, FILTER_VALIDATE_URL)) {
+                $img_src = $img_raw;
+            } else {
+                $img_src = "../images/" . $img_raw;
+            }
+        ?>
+        <tr>
+            <td><img src="<?= $img_src ?>" width="80" style="object-fit: cover;"></td>
+            <td><?= htmlspecialchars($name) ?></td>
+            <td><?= number_format($price, 0, ',', '.') ?>đ</td>
 
-<a href="checkout.php" class="btn-checkout">Thanh toán</a>
+            <td>
+                <a href="update_cart.php?id=<?= $id ?>&type=minus" style="text-decoration:none">➖</a>
+                <span style="margin: 0 10px;"><?= $qty ?></span>
+                <a href="update_cart.php?id=<?= $id ?>&type=plus" style="text-decoration:none">➕</a>
+            </td>
 
-<?php } ?>
+            <td><?= number_format($sub, 0, ',', '.') ?>đ</td>
+            <td><a href="remove_cart.php?id=<?= $id ?>" onclick="return confirm('Xóa sản phẩm này?')">❌</a></td>
+        </tr>
+        <?php } ?>
+    </table>
+
+    <div style="text-align: right; margin-top: 20px;">
+        <h3>Tổng tiền: <span style="color:red"><?= number_format($total, 0, ',', '.') ?>đ</span></h3>
+        <br>
+        <a href="checkout.php" class="btn-checkout" style="background: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Thanh toán ngay</a>
+    </div>
+
+    <?php } ?>
 </div>
 </body>
 </html>

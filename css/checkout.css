@@ -12,7 +12,7 @@ body {
 h2 {
     text-align: center;
     margin-bottom: 25px;
-    color: #222;
+    
 }
 
 /* KHUNG CHECKOUT */
@@ -83,4 +83,70 @@ button:hover {
         width: 90%;
         padding: 25px;
     }
+}
+header {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav a:hover {
+    color: orange;
+}
+.menu-right{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+h2 {
+    margin: 40px 0 20px 0;
+    text-align: center;
+}
+input.error {
+    border: 2px solid red;
+}
+
+input.success {
+    border: 2px solid green;
+}
+p{
+      width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #ff6a00, #ff8c1a);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 30px;
+    text-align: center;
+    
+}
+p:hover {
+    background: linear-gradient(135deg, #ff8c1a, #ff6a00);
+    transform: translateY(-2px);
 }

@@ -1,0 +1,145 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f2f5;
+    line-height: 1.8; /* Giãn dòng văn bản */
+    color: #333;
+}
+
+.main-content {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Form Styling - Rộng rãi và thoáng */
+.styled-form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 50px;
+}
+
+.form-row {
+    display: flex;
+    gap: 25px; /* Giãn cách giữa các ô input */
+    margin-bottom: 20px;
+}
+
+.form-row input, .form-row select, .styled-form textarea {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.styled-form textarea {
+    width: 100%;
+    margin: 10px 0;
+    min-height: 100px;
+    display: block;
+    box-sizing: border-box;
+}
+
+.btn-add {
+    width: 100%;
+    padding: 15px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Table Styling - Giãn cách hàng cực thoáng */
+.styled-table {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0 15px; /* Tạo khoảng hở giữa các dòng */
+}
+
+.styled-table th {
+    padding: 15px;
+    color: #777;
+    text-transform: uppercase;
+    font-size: 13px;
+    border-bottom: 2px solid #ddd;
+}
+
+.styled-table td {
+    padding: 20px; /* Tăng đệm để dòng cao hơn */
+    background: white;
+    text-align: center;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Bo góc cho hàng đầu và cuối của mỗi dòng */
+.styled-table td:first-child { border-left: 1px solid #f0f0f0; border-radius: 10px 0 0 10px; }
+.styled-table td:last-child { border-right: 1px solid #f0f0f0; border-radius: 0 10px 10px 0; }
+
+.img-preview {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.text-left { text-align: left !important; }
+.prod-name { font-weight: bold; font-size: 16px; margin-bottom: 5px; }
+.prod-cat { font-size: 12px; color: #3498db; background: #ebf5fb; padding: 3px 8px; border-radius: 4px; }
+.prod-price { color: #e74c3c; font-weight: bold; }
+
+.btn-delete {
+    background: #ffeded;
+    color: #e74c3c;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* HEADER */
+header {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav a:hover {
+    color: orange;
+}
+h2 {
+    margin: 40px 0 20px 0;
+    text-align: center;
+}
+.menu-right{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

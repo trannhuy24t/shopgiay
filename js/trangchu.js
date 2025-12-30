@@ -25,4 +25,5 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Đã đóng menu vì click ra ngoài");
         }
     });
+    
 });
