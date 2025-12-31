@@ -131,3 +131,101 @@ h1 {
 .back-link:hover {
     color: #333;
 } 
+/* Container của Slide */
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.mySlides {
+    display: none; /* Ẩn các ảnh khi chưa load xong */
+}
+
+/* Nút bấm Trái/Phải */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 3px;
+    user-select: none;
+    text-decoration: none;
+}
+.next { right: 0; }
+.prev:hover, .next:hover { background: rgba(0,0,0,0.8); }
+
+/* Khu vực ảnh nhỏ */
+.thumbnail-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    overflow-x: auto;
+}
+.demo-thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    opacity: 0.6;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid transparent;
+}
+.active, .demo-thumb:hover {
+    opacity: 1;
+    border-color: #1a1a1a;
+}
+
+/* Hiệu ứng chuyển cảnh */
+.fade {
+    animation: fadeEffect 0.5s;
+}
+@keyframes fadeEffect {
+    from {opacity: 0.4} to {opacity: 1}
+}/* HEADER */
+header {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav a:hover {
+    color: orange;
+}
+h2 {
+    margin: 40px 0 20px 0;
+    text-align: center;
+}
+.menu-right{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

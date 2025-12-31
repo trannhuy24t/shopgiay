@@ -7,7 +7,6 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 
 $id = (int)$_GET['id'];
 
-// SQL lấy thông tin sản phẩm và tên danh mục
 $sql = "SELECT p.*, c.name as cat_name 
         FROM products p 
         LEFT JOIN categories c ON p.category_id = c.id 
@@ -30,18 +29,56 @@ $images = explode('|', $p['image']);
 </head>
 <body>
 
-<header>
-    </header>
+<header class="headerrr">
+    <div class="container">
+        <div class="nav">
+            <a href="./trangchu.php"><h2>SNEAKERZONE</h2></a>
+            <div class="menu-right">
+                <a href="../php/sanpham.php">Sản phẩm</a>
+                <a href="#">Liên hệ</a>
+                <a href="../php/giohang.php">Giỏ hàng</a>
+
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') { ?>
+                    <a href="../php/qldh.php">Quản lý đơn hàng</a>
+                    <a href="#">Quản lý khách hàng</a>
+                    <a href="../php/qlsp.php">Quản lý sản phẩm</a>
+                    <a href="../php/thongke.php">Thống kê</a>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</header>
 
 <div class="detail-container">
     <div class="detail-left">
-        <div class="image-gallery">
-            <?php foreach ($images as $img) {
+       <div class="slideshow-container">
+    <?php 
+    // Tách chuỗi và dùng array_filter để loại bỏ các phần tử rỗng
+    $images = array_filter(explode('|', $p['image'])); 
+
+    foreach ($images as $index => $img) {
+        $img = trim($img); // Loại bỏ dấu cách thừa ở 2 đầu tên file
+        if ($img == '') continue;
+
+        // Kiểm tra xem là link URL hay tên file trong thư mục images
+        $src = (filter_var($img, FILTER_VALIDATE_URL)) ? $img : "../images/" . $img;
+    ?>
+        <div class="mySlides fade">
+            <img src="<?= $src ?>" style="width:100%" onerror="this.src='../images/default.jpg'; console.log('Không tìm thấy: <?= $src ?>');">
+        </div>
+    <?php } ?>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+        <div class="thumbnail-row">
+            <?php foreach ($images as $index => $img) {
                 $img = trim($img);
                 if ($img == '') continue;
                 $src = (filter_var($img, FILTER_VALIDATE_URL)) ? $img : "../images/" . $img;
             ?>
-                <img src="<?= $src ?>" alt="<?= htmlspecialchars($p['name']) ?>">
+                <img class="demo-thumb cursor" src="<?= $src ?>" onclick="currentSlide(<?= $index + 1 ?>)">
             <?php } ?>
         </div>
     </div>
@@ -78,6 +115,7 @@ $images = explode('|', $p['image']);
         </div>
     </div>
 </div>
+<script src="../js/chitietsanpham.js"></script>
 
 </body>
 </html>

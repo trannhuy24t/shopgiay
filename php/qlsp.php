@@ -1,5 +1,6 @@
 <?php
 include "../php/config.php";
+session_start();
 
 // 1. Lấy danh sách sản phẩm (kèm tên phân loại)
 $sp = mysqli_query($conn, "SELECT p.*, c.name as cat_name 
@@ -87,13 +88,15 @@ $cats = mysqli_query($conn, "SELECT * FROM categories");
         data-image="<?= $row['image'] ?>"
         data-category="<?= $row['category_id'] ?>"
         data-description="<?= htmlspecialchars($row['description'] ?? '') ?>"> <td><?= $row['id'] ?></td>
-        <td>
-            <?php
-            $img = $row['image'];
-            $src = (filter_var($img, FILTER_VALIDATE_URL)) ? $img : "../images/" . $img;
-            ?>
-            <img src="<?= $src ?>" class="img-preview" width="60">
-        </td>
+       <td>
+    <?php
+    // Tách chuỗi ảnh và chỉ lấy tấm đầu tiên để hiện ở bảng quản lý
+    $all_imgs = explode('|', $row['image']);
+    $first_img = trim($all_imgs[0]);
+    $src = (filter_var($first_img, FILTER_VALIDATE_URL)) ? $first_img : "../images/" . $first_img;
+    ?>
+    <img src="<?= $src ?>" class="img-preview" width="60">
+</td>
         <td class="text-left">
             <div class="prod-name"><?= htmlspecialchars($row['name']) ?></div>
             <span class="prod-cat"><?= $row['cat_name'] ?? 'Chưa phân loại' ?></span>

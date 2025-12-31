@@ -23,7 +23,7 @@ session_start();
             <a href="./trangchu.php"><h2>SNEAKERZONE</h2></a>
             <div class="menu-right">
                 <a href="../php/sanpham.php">Sản phẩm</a>
-                <a href="#">Liên hệ</a>
+                <a href="../pages/contact.html">Liên hệ</a>
                 <a href="../php/giohang.php">Giỏ hàng</a>
 
                <!-- MENU ADMIN (CHỈ ADMIN THẤY) -->
@@ -31,6 +31,7 @@ session_start();
     <a href="../php/qldh.php">Quản lý đơn hàng</a>
     <a href="#">Quản lý khách hàng</a>
     <a href="../php/qlsp.php">Quản lý sản phẩm</a>
+    <a href="../php/qllh.php">Quản lý liên hệ</a>
     <a href="../php/thongke.php">Thống kê</a>
 <?php } ?>
 
