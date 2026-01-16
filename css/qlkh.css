@@ -1,0 +1,76 @@
+/* HEADER */
+header {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav a:hover {
+    color: orange;
+}
+h2 {
+    margin: 40px 0 20px 0;
+    text-align: center;
+}
+.menu-right{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+/* QUẢN LÝ KHÁCH HÀNG */
+.qlkh-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+}
+.qlkh-container h1{
+    text-align: center;
+    margin-bottom: 30px;
+
+}
+.qlkh-container table{
+    width: 100%;
+    border-bottom: 40px solid #ccc;
+}
+.qlkh-table th, .qlkh-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.customer-info {
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-left: 5px solid #007bff;
+}
+
+.customer-info p {
+    margin: 6px 0;
+}
+.customer-info strong {
+    color: #333;
+}

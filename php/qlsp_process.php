@@ -16,7 +16,7 @@ if ($action === "add") {
         $_POST['quantity'],
         $_POST['image'],
         $_POST['category_id'],
-        $_POST['description'] // Thêm dòng này
+        $_POST['description'] 
     );
     mysqli_stmt_execute($stmt);
 }

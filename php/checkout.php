@@ -14,7 +14,7 @@ if (!isset($_SESSION['user'])) {
 $user_id = $_SESSION['user']['id'];
 
 // Lấy thông tin user
-$sql = "SELECT hoten, phone, address FROM user WHERE id = ?";
+$sql = "SELECT hoten, phone, email,address FROM user WHERE id = ?";
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "i", $user_id);
 mysqli_stmt_execute($stmt);
@@ -26,17 +26,6 @@ $user = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
 <meta charset="UTF-8">
 <title>Thanh toán</title>
 <link rel="stylesheet" href="../css/checkout.css">
-
-<script>
-function validateForm() {
-    const phone = document.getElementById("phone").value;
-
-    if (!/^[0-9]{9,11}$/.test(phone)) {
-        alert("❌ Số điện thoại không hợp lệ!");
-        return false;
-    }
-    return true;
-}
 </script>
 </head>
 
@@ -63,31 +52,35 @@ function validateForm() {
 
 <h2>🧾 THÔNG TIN THANH TOÁN</h2>
 
-<form action="process_checkout.php" method="post" onsubmit="return validatePhone()">
+<form action="process_checkout.php" method="post" onsubmit="return validateForm()">
 
     <label>Họ tên</label>
     <input type="text" name="customer_name"
            value="<?= htmlspecialchars($user['hoten'] ?? '') ?>" required>
 
     <label>Số điện thoại</label>
-<input type="text" name="phone" id="phone" required>
+    <input type="text" name="phone" id="phone"
+           value="<?= htmlspecialchars($user['phone'] ?? '') ?>" required>
 
-<small id="phone-error" style="color:red; display:none;">
-    ⚠ Số điện thoại phải có 10–11 chữ số
-</small>
+    <small id="phone-error" style="color:red; display:none;">
+        ⚠ Số điện thoại phải có 10–11 chữ số
+    </small>
 
+    <label>Email (không bắt buộc)</label>
+    <input type="email" name="email"
+           value="<?= htmlspecialchars($user['email'] ?? '') ?>">
 
     <label>Địa chỉ</label>
     <textarea name="address" required><?= htmlspecialchars($user['address'] ?? '') ?></textarea>
 
     <label>
-        <input type="checkbox" name="save_info" checked>
+        <input type="checkbox" name="save_info">
         Lưu thông tin cho lần sau
     </label>
 
     <button type="submit">✅ XÁC NHẬN ĐẶT HÀNG</button>
-    <p><a href="../php/sanpham.php">Quay Lai</a></p>
 </form>
+
 <script src="../js/checkout.js"></script>
 </body>
 </html>

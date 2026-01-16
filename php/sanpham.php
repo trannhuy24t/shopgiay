@@ -66,13 +66,13 @@ $products = mysqli_query($conn,
         <p class="qty">Còn: <?= $p['quantity'] ?></p>
 
         <?php if ($p['quantity'] > 0) { ?>
-        <form method="post" action="add_to_card.php">
-            <input type="hidden" name="id" value="<?= $p['id'] ?>">
-            <button type="submit">Thêm giỏ</button>
-        </form>
-        <?php } else { ?>
-            <button disabled>Hết hàng</button>
-        <?php } ?>
+    <a href="chitietsanpham.php?id=<?= $p['id'] ?>" class="btn-add">
+        Thêm giỏ
+    </a>
+<?php } else { ?>
+    <button disabled>Hết hàng</button>
+<?php } ?>
+
     </div>
 <?php } ?>
 </div>

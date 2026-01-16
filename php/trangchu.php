@@ -1,5 +1,7 @@
 <?php
 session_start();
+// Bổ sung biến kiểm tra đăng nhập để truyền cho file JS
+$isLoggedIn = isset($_SESSION['user']) ? 'true' : 'false';
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -7,41 +9,34 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SneakerZone - Trang chủ</title>
-
-    <!-- CSS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../css/trangchu.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body data-logged-in="<?php echo $isLoggedIn; ?>">
 
-<!-- HEADER -->
 <header>
     <div class="container">
         <div class="nav">
             <a href="./trangchu.php"><h2>SNEAKERZONE</h2></a>
             <div class="menu-right">
-                <a href="../php/sanpham.php">Sản phẩm</a>
-                <a href="../pages/contact.html">Liên hệ</a>
-                <a href="../php/giohang.php">Giỏ hàng</a>
+                <a href="../php/sanpham.php" class="auth-link">Sản phẩm</a>
+                <a href="../php/contact.php" class="auth-link">Liên hệ</a>
+                <a href="../php/giohang.php" class="auth-link">Giỏ hàng</a>
 
-               <!-- MENU ADMIN (CHỈ ADMIN THẤY) -->
-<?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') { ?>
-    <a href="../php/qldh.php">Quản lý đơn hàng</a>
-    <a href="#">Quản lý khách hàng</a>
-    <a href="../php/qlsp.php">Quản lý sản phẩm</a>
-    <a href="../php/qllh.php">Quản lý liên hệ</a>
-    <a href="../php/thongke.php">Thống kê</a>
-<?php } ?>
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') { ?>
+                    <a href="../php/qldh.php">Quản lý đơn hàng</a>
+                    <a href="../php/QLKH.php">Quản lý khách hàng</a>
+                    <a href="../php/qlsp.php">Quản lý sản phẩm</a>
+                    <a href="../php/qllh.php">Quản lý liên hệ</a>
+                    <a href="../php/thongke.php">Thống kê</a>
+                <?php } ?>
 
-
-                <!-- LOGIN / USER -->
                 <?php if (!isset($_SESSION['user'])): ?>
-                    <!-- CHƯA ĐĂNG NHẬP -->
                     <a id="loginbtn" href="../pages/dangnhap.html">Đăng nhập</a>
                 <?php else: ?>
-                    <!-- ĐÃ ĐĂNG NHẬP -->
                     <div id="usericon" class="user-area">
                         <img src="../images/user.jpg" class="avatar-icon" alt="user">
                         <ul id="usermenu" class="user-menu">
@@ -56,7 +51,6 @@ session_start();
     </div>
 </header>
 
-<!-- BANNER -->
 <div class="slider">
     <div class="slides">
         <img src="https://img.freepik.com/free-photo/pair-trainers_144627-3799.jpg">
@@ -64,7 +58,6 @@ session_start();
     </div>
 </div>
 
-<!-- PRODUCTS -->
 <div class="container">
     <h2>Sản phẩm nổi bật</h2>
     <div class="products">
@@ -72,30 +65,29 @@ session_start();
             <img src="../images/nike-air-max.png" alt="Nike Air Max">
             <h3>Nike Air Max</h3>
             <p class="price">2,500,000đ</p>
-            <button class="btn">Thêm vào giỏ</button>
+            <button class="btn btn-add-cart">Thêm vào giỏ</button>
         </div>
         <div class="product">
             <img src="../images/nike-air-max.png" alt="Nike Air Max">
             <h3>Nike Air Max</h3>
             <p class="price">2,500,000đ</p>
-            <button class="btn">Thêm vào giỏ</button>
+            <button class="btn btn-add-cart">Thêm vào giỏ</button>
         </div>
         <div class="product">
             <img src="../images/nike-air-max.png" alt="Nike Air Max">
             <h3>Nike Air Max</h3>
             <p class="price">2,500,000đ</p>
-            <button class="btn">Thêm vào giỏ</button>
+            <button class="btn btn-add-cart">Thêm vào giỏ</button>
         </div>
         <div class="product">
             <img src="../images/nike-air-max.png" alt="Nike Air Max">
             <h3>Nike Air Max</h3>
             <p class="price">2,500,000đ</p>
-            <button class="btn">Thêm vào giỏ</button>
+            <button class="btn btn-add-cart">Thêm vào giỏ</button>
         </div>
     </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
     <h3>Liên hệ</h3>
     <p>Email: trannhuy543@gmail.com</p>

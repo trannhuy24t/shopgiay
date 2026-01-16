@@ -10,6 +10,8 @@ if (empty($_SESSION['cart'])) {
 // 2️⃣ Lấy thông tin khách
 $customer_name = trim($_POST['customer_name'] ?? '');
 $phone         = trim($_POST['phone'] ?? '');
+$email = trim($_POST['email'] ?? '');
+$email = $email === '' ? null : $email;
 $address       = trim($_POST['address'] ?? '');
 
 // Validate
@@ -27,34 +29,40 @@ foreach ($_SESSION['cart'] as $item) {
 $user_id = $_SESSION['user']['id'] ?? null;
 
 // 5️⃣ Lưu đơn hàng
-$sql = "INSERT INTO orders (user_id, customer_name, phone, address, total_price, status, order_date)
-        VALUES (?, ?, ?, ?, ?, 'Chờ xử lý', NOW())";
+$sql = "INSERT INTO orders (user_id, customer_name, phone, email,address, total_price, status, order_date)
+        VALUES (?, ?, ?, ?, ?, ?, 'Chờ xử lý', NOW())";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("isssi", $user_id, $customer_name, $phone, $address, $total);
+$stmt->bind_param("issssi", $user_id, $customer_name, $phone, $email, $address, $total);
 $stmt->execute();
 
 // Lấy order_id vừa tạo
 $order_id = $conn->insert_id;
 
 // 6️⃣ Lưu chi tiết đơn hàng & TRỪ SỐ LƯỢNG TRONG KHO
-foreach ($_SESSION['cart'] as $product_id => $item) {
-    $quantity = $item['quantity'];
-    $price    = $item['price'];
+foreach ($_SESSION['cart'] as $item) {
 
-    // A. Lưu vào bảng order_items
-    $sqlItem = "INSERT INTO order_items (order_id, product_id, quantity, price)
-                VALUES (?, ?, ?, ?)";
+    $product_id   = $item['product_id'];
+    $product_name = $item['name']; // ✅ TÊN SP
+    $quantity     = $item['quantity'];
+    $price        = $item['price'];
+
+    $sqlItem = "INSERT INTO order_items 
+        (order_id, product_id, product_name, quantity, price)
+        VALUES (?, ?, ?, ?, ?)";
+
     $stmtItem = $conn->prepare($sqlItem);
-    $stmtItem->bind_param("iiid", $order_id, $product_id, $quantity, $price);
+    $stmtItem->bind_param(
+        "iisid",
+        $order_id,
+        $product_id,
+        $product_name,
+        $quantity,
+        $price
+    );
     $stmtItem->execute();
-
-    // B. CẬP NHẬT KHO (Trừ số lượng sản phẩm)
-    $sqlUpdateStock = "UPDATE products SET quantity = quantity - ? WHERE id = ?";
-    $stmtStock = $conn->prepare($sqlUpdateStock);
-    $stmtStock->bind_param("ii", $quantity, $product_id);
-    $stmtStock->execute();
 }
+
 
 // 7️⃣ Xóa giỏ hàng
 unset($_SESSION['cart']);

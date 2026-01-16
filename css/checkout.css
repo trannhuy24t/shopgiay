@@ -35,6 +35,7 @@ label {
 
 /* INPUT + TEXTAREA */
 input[type="text"],
+input[type="email"],
 textarea {
     width: 100%;
     padding: 12px;

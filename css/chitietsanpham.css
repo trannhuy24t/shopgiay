@@ -229,3 +229,50 @@ h2 {
     align-items: center;
     gap: 20px;
 }
+/* ===== FORM CHỌN SIZE – MÀU – SỐ LƯỢNG ===== */
+.variant-form {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.variant-form label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+}
+
+.variant-form select,
+.variant-form input[type="number"] {
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.variant-form select:focus,
+.variant-form input[type="number"]:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+}
+
+/* Nút thêm giỏ */
+.variant-form .btn-buy {
+    margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .detail-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .detail-left,
+    .detail-right {
+        width: 100%;
+    }
+}

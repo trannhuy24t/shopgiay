@@ -45,7 +45,7 @@ $role = "user"; // mặc định user đăng ký
 // mã hóa mật khẩu
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-// insert có role
+
 $sql = "INSERT INTO user (hoten, email, password, role)
         VALUES (?, ?, ?, ?)";
 $stmt = mysqli_prepare($conn, $sql);
