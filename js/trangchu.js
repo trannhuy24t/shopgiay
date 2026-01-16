@@ -1,57 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // --- PHẦN BỔ SUNG: KIỂM TRA ĐĂNG NHẬP ---
-    // Lấy trạng thái từ thuộc tính data-logged-in của body
-    const isLoggedIn = document.body.getAttribute('data-logged-in') === 'true';
 
-    // Chọn các link Menu và nút Thêm vào giỏ (Các phần tử có class .auth-link hoặc .btn)
-    const authLinks = document.querySelectorAll('.auth-link, .btn');
+    const isLoggedIn = document.body.dataset.loggedIn === 'true';
 
-   authLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        if (!isLoggedIn) {
-            e.preventDefault();
+    document.querySelectorAll(".btn-add-cart").forEach(btn => {
+        btn.addEventListener("click", () => {
 
-            // Thay thế alert mặc định
-            Swal.fire({
-                title: 'Thông báo',
-                text: 'Bạn cần đăng nhập để thực hiện chức năng này!',
-                icon: 'warning',
-                confirmButtonText: 'Đăng nhập ngay',
-                confirmButtonColor: '#3085d6'
-            }).then((result) => {
-                if (result.isConfirmed) {
+            if (!isLoggedIn) {
+                Swal.fire({
+                    title: 'Thông báo',
+                    text: 'Bạn cần đăng nhập để mua hàng',
+                    icon: 'warning',
+                    confirmButtonText: 'Đăng nhập'
+                }).then(() => {
                     window.location.href = '../pages/dangnhap.html';
-                }
-            });
-        }
-    });
-});
-    // --- HẾT PHẦN BỔ SUNG ---
+                });
+                return;
+            }
 
-    // Lấy các phần tử
-    const userArea = document.querySelector(".user-area");
-    const userMenu = document.getElementById("usermenu");
+            const pid = btn.dataset.id;
 
-    // Chỉ chạy nếu các phần tử này tồn tại (đã đăng nhập)
-    if (userArea && userMenu) {
-        
-        // BƯỚC 1: Click vào vùng User (ảnh đại diện) để bật/tắt menu
-        userArea.addEventListener("click", (e) => {
-            e.stopPropagation(); // CỰC KỲ QUAN TRỌNG
-            userMenu.classList.toggle("show-menu");
+            document.getElementById("modalProductId").value = pid;
+            document.getElementById("modalProductName").innerText = btn.dataset.name;
+
+            fetch(`get_variants.php?id=${pid}`)
+                .then(res => res.json())
+                .then(data => {
+
+                    const sizeSel  = document.getElementById("sizeSelect");
+                    const colorSel = document.getElementById("colorSelect");
+
+                    sizeSel.innerHTML  = '<option value="">-- Chọn size --</option>';
+                    colorSel.innerHTML = '<option value="">-- Chọn màu --</option>';
+
+                    data.sizes.forEach(s => {
+                        sizeSel.innerHTML += `<option value="${s}">${s}</option>`;
+                    });
+
+                    data.colors.forEach(c => {
+                        colorSel.innerHTML += `<option value="${c}">${c}</option>`;
+                    });
+                });
+
+            document.getElementById("cartModal").style.display = "flex";
         });
-
-        // BƯỚC 2: Ngăn menu bị đóng khi click vào bên trong các dòng chữ
-        userMenu.addEventListener("click", (e) => {
-            e.stopPropagation(); 
-        });
-    }
-
-    // BƯỚC 3: Click ra bất cứ đâu bên ngoài thì đóng menu
-    document.addEventListener("click", () => {
-        if (userMenu && userMenu.classList.contains("show-menu")) {
-            userMenu.classList.remove("show-menu");
-            console.log("Đã đóng menu vì click ra ngoài");
-        }
     });
+
 });
+
+function closeModal() {
+    document.getElementById("cartModal").style.display = "none";
+}

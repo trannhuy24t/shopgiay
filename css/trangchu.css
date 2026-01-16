@@ -169,3 +169,98 @@ footer {
 .user-menu.show-menu {
     display: block !important;
 }
+/* ===== MODAL CHỌN SIZE + MÀU ===== */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-box {
+    background: #fff;
+    width: 350px;
+    border-radius: 10px;
+    padding: 20px;
+    animation: zoomIn 0.25s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-box h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #222;
+}
+
+/* FORM */
+.modal-box label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.modal-box select,
+.modal-box input[type="number"] {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.modal-box select:focus,
+.modal-box input:focus {
+    outline: none;
+    border-color: #000;
+}
+
+/* ACTION BUTTON */
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.modal-actions button[type="submit"] {
+    background: #000;
+    color: #fff;
+}
+
+.modal-actions button[type="submit"]:hover {
+    background: #222;
+}
+
+.modal-actions button[type="button"] {
+    background: #e0e0e0;
+}
+
+.modal-actions button[type="button"]:hover {
+    background: #cfcfcf;
+}
+
+/* ANIMATION */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

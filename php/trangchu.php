@@ -1,5 +1,15 @@
 <?php
 session_start();
+include "config.php";
+
+/* Lấy 8 sản phẩm mới nhất */
+$products = mysqli_query($conn, "
+    SELECT id, name, price, image
+    FROM products
+    ORDER BY id DESC
+    LIMIT 3
+");
+
 // Bổ sung biến kiểm tra đăng nhập để truyền cho file JS
 $isLoggedIn = isset($_SESSION['user']) ? 'true' : 'false';
 ?>
@@ -61,31 +71,26 @@ $isLoggedIn = isset($_SESSION['user']) ? 'true' : 'false';
 <div class="container">
     <h2>Sản phẩm nổi bật</h2>
     <div class="products">
-        <div class="product">
-            <img src="../images/nike-air-max.png" alt="Nike Air Max">
-            <h3>Nike Air Max</h3>
-            <p class="price">2,500,000đ</p>
-            <button class="btn btn-add-cart">Thêm vào giỏ</button>
-        </div>
-        <div class="product">
-            <img src="../images/nike-air-max.png" alt="Nike Air Max">
-            <h3>Nike Air Max</h3>
-            <p class="price">2,500,000đ</p>
-            <button class="btn btn-add-cart">Thêm vào giỏ</button>
-        </div>
-        <div class="product">
-            <img src="../images/nike-air-max.png" alt="Nike Air Max">
-            <h3>Nike Air Max</h3>
-            <p class="price">2,500,000đ</p>
-            <button class="btn btn-add-cart">Thêm vào giỏ</button>
-        </div>
-        <div class="product">
-            <img src="../images/nike-air-max.png" alt="Nike Air Max">
-            <h3>Nike Air Max</h3>
-            <p class="price">2,500,000đ</p>
-            <button class="btn btn-add-cart">Thêm vào giỏ</button>
-        </div>
-    </div>
+<?php while ($p = mysqli_fetch_assoc($products)):
+
+    $imgs = explode('|', $p['image']);
+    $img = $imgs[0] ?? 'default.jpg';
+?>
+<div class="product">
+    <img src="../images/<?= $img ?>">
+    <h3><?= htmlspecialchars($p['name']) ?></h3>
+    <p class="price"><?= number_format($p['price']) ?>đ</p>
+
+    <button class="btn-add-cart"
+        data-id="<?= $p['id'] ?>"
+        data-name="<?= htmlspecialchars($p['name']) ?>">
+        Thêm vào giỏ
+    </button>
+</div>
+<?php endwhile; ?>
+</div>
+
+
 </div>
 
 <footer>
@@ -97,6 +102,33 @@ $isLoggedIn = isset($_SESSION['user']) ? 'true' : 'false';
 </footer>
 
 <script src="../js/trangchu.js"></script>
+<div id="cartModal" class="modal">
+  <div class="modal-box">
+    <h3 id="modalProductName"></h3>
+
+    <form method="POST" action="add_to_cart.php">
+      <input type="hidden" name="id" id="modalProductId">
+
+      <label>Size</label>
+      <select name="size" id="sizeSelect" required>
+        <option value="">-- Chọn size --</option>
+      </select>
+
+      <label>Màu</label>
+      <select name="color" id="colorSelect" required>
+        <option value="">-- Chọn màu --</option>
+      </select>
+
+      <label>Số lượng</label>
+      <input type="number" name="qty" value="1" min="1">
+
+      <div class="modal-actions">
+        <button type="submit">Thêm vào giỏ</button>
+        <button type="button" onclick="closeModal()">Hủy</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 </body>
 </html>

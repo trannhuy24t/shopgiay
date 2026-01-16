@@ -2,49 +2,74 @@
 session_start();
 include "config.php";
 
-if (
-    !isset($_POST['id'], $_POST['size'], $_POST['color'], $_POST['qty'])
-) {
+/* ===== VALIDATE ===== */
+if (!isset($_POST['id'], $_POST['size'], $_POST['color'], $_POST['qty'])) {
     die("Thiếu dữ liệu");
 }
 
 $id    = (int)$_POST['id'];
 $size  = trim($_POST['size']);
 $color = trim($_POST['color']);
-$qty   = max(1, (int)$_POST['qty']); // đảm bảo >= 1
+$qty   = max(1, (int)$_POST['qty']);
 
-// Lấy thông tin sản phẩm
-$sql = "SELECT name, price, image FROM products WHERE id = $id";
-$res = mysqli_query($conn, $sql);
-$p = mysqli_fetch_assoc($res);
+/* ===== CHECK BIẾN THỂ + LẤY variant_id ===== */
+$sqlCheck = "
+    SELECT id, quantity
+    FROM product_variants
+    WHERE product_id = ?
+      AND size = ?
+      AND color = ?
+      AND quantity >= ?
+    LIMIT 1
+";
+$stmt = $conn->prepare($sqlCheck);
+$stmt->bind_param("issi", $id, $size, $color, $qty);
+$stmt->execute();
+$variant = $stmt->get_result()->fetch_assoc();
+
+if (!$variant) {
+    die("Size hoặc màu không hợp lệ / không đủ hàng");
+}
+
+$variant_id = $variant['id'];
+
+/* ===== LẤY SẢN PHẨM ===== */
+$sql = "SELECT name, price, image FROM products WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$p = $stmt->get_result()->fetch_assoc();
 
 if (!$p) {
     die("Sản phẩm không tồn tại");
 }
 
-// 👉 LẤY ẢNH ĐẦU TIÊN
-$imgs = explode('|', $p['image']);
-$first_img = $imgs[0] ?? 'default.jpg';
+/* ===== ẢNH ===== */
+$first_img = 'default.jpg';
+if (!empty($p['image'])) {
+    $imgs = explode('|', $p['image']);
+    $first_img = trim($imgs[0]);
+}
 
-// Key duy nhất theo sp + size + màu
+/* ===== KEY (SP + SIZE + MÀU) ===== */
 $key = $id . "_" . $size . "_" . $color;
 
-// Thêm vào giỏ
+/* ===== ADD CART ===== */
 if (isset($_SESSION['cart'][$key])) {
     $_SESSION['cart'][$key]['quantity'] += $qty;
 } else {
     $_SESSION['cart'][$key] = [
         'product_id' => $id,
+        'variant_id' => $variant_id, // ✅ CỰC KỲ QUAN TRỌNG
         'name'       => $p['name'],
-        'price'      => $p['price'],
-        'image'      => $first_img, // ✅ ẢNH ĐÚNG
+        'price'      => (int)$p['price'],
+        'image'      => $first_img,
         'size'       => $size,
         'color'      => $color,
         'quantity'   => $qty
     ];
 }
 
-// Chuyển sang giỏ hàng
-header("Location: ../php/giohang.php");
+/* ===== REDIRECT ===== */
+header("Location: giohang.php");
 exit;
-?>
