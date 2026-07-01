@@ -1,2 +1,3 @@
 Dong sua tu Member1 - lan 1
 Member2 sua dong nay
+Member1 sua dong nay
