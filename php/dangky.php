@@ -15,7 +15,7 @@ if ($hoten === "" || $email === "" || $password === "" || $confirmpassword === "
     exit;
 }
 
-// kiểm tra mật khẩu nhập lại
+//kiem tra cai gi day
 if ($password !== $confirmpassword) {
     echo json_encode([
         "status" => "error",
