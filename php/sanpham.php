@@ -13,7 +13,7 @@ if ($cat_id != '') {
     $where = "WHERE p.category_id = $cat_id";
 }
 
-/* ===== SẢN PHẨM + TỔNG KHO TỪ VARIANT ===== */
+/* =====  ===== */
 $products = mysqli_query($conn, "
     SELECT 
         p.*,
