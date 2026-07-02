@@ -7,7 +7,7 @@ $cat_id = $_GET['cat'] ?? '';
 /* ===== LẤY DANH MỤC ===== */
 $categories = mysqli_query($conn, "SELECT * FROM categories");
 
-/* ===== ĐIỀU KIỆN ===== */
+/* ===== ĐIỀU KIỆn làm giàu ===== */
 $where = "";
 if ($cat_id != '') {
     $where = "WHERE p.category_id = $cat_id";
