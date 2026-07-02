@@ -46,10 +46,10 @@ $products = mysqli_query($conn, "
                 <a href="../php/giohang.php">Giỏ hàng</a>
 
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') { ?>
-                    <a href="../php/qldh.php">Quản lý đơn hàng</a>
-                    <a href="../php/qlkh.php">Quản lý khách hàng</a>
-                    <a href="../php/qlsp.php">Quản lý sản phẩm</a>
-                    <a href="../php/thongke.php">Thống kê</a>
+                    <a href="../php/qldh.php">Quản lý đơn hàng của tôi</a>
+                    <a href="../php/qlkh.php">Quản lý khách hàng của tôi</a>
+                    <a href="../php/qlsp.php">Quản lý sản phẩm chung</a>
+                    <a href="../php/thongke.php">Thống kê tất cả </a>
                 <?php } ?>
             </div>
         </div>
