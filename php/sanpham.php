@@ -4,7 +4,7 @@ include "config.php";
 
 $cat_id = $_GET['cat'] ?? '';
 
-/* ===== LẤY DANH MỤC ===== */
+/* ===== danh sach ===== */
 $categories = mysqli_query($conn, "SELECT * FROM categories");
 
 /* ===== ĐIỀU KIỆn làm giàu ===== */
